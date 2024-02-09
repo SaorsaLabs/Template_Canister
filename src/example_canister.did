@@ -1,0 +1,35 @@
+type MemoryStats = record {memory: nat64; heap_memory: nat64};
+type LogEntry = record {timestamp: text; text: text};
+
+service : (text) -> {
+
+    // Canister Management (admin gated)
+    "add_authorised": (text) -> (text);
+    "remove_authorised": (text) -> (text);
+    "add_admin": (text) -> (text);
+    "remove_admin": (text) -> (text);
+    "get_all_authorised": () -> (vec text) query;
+    "get_all_admins": () -> (vec text) query;
+    "get_logs": () -> (opt vec LogEntry) query;
+    "get_memory_stats": () -> (MemoryStats) query;
+    
+    // Canister Management (not gated)
+    "get_cycles_balance": () -> (nat64) query;
+    "deposit_cycles": () -> ();
+    "canister_version": () -> (text) query;
+
+    // Timers (admin gated)
+    "stop_all_timers": () -> (text);
+    "start_quotes_timer": (nat64) -> (text); // input is in seconds
+
+    // HTTP outcall methods
+    "test_http_outcall": () -> (float64);
+
+    // Custom module methods
+    "write_to_canister_log": () -> ();
+    "get_canister_own_id": () -> (text) query;
+    "add_btree_method": (text, text, nat64) -> ();
+    "remove_btree_method": (text) -> ();
+    "make_call_to_ckbtc_minter": () -> (text);
+    "clear_all_logs": () -> ();
+}

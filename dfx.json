@@ -1,0 +1,18 @@
+{
+  "canisters": {
+		"example_canister": {
+			"candid": "src/example_canister/example_canister.did",
+			"package": "example_canister",
+			"type": "rust",
+			"optimize": "cycles"
+		}
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
