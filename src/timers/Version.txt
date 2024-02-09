@@ -1,5 +1,0 @@
-Requires: 
-
-
-0.0.1 - 'ello world
-- add basic functions for starting and stopping timer
