@@ -67,7 +67,7 @@ dfx canister call example_canister --network ic remove_btree_method '("Jonathan"
 ```
 
 #### Call another canister 
-Within the core module is a function (see utils.rs) to allow users to easily call other canister smart contracts on the Internet Computer. An example of this being used is in example_custom_modlue/logic.rs which calls the ckBTC minter to fetch the estimated withdrawal fee.
+Within the core module is a function to allow users to easily call other canister smart contracts on the Internet Computer (see utils.rs). An example of this being used is in example_custom_modlue/logic.rs which calls the ckBTC minter to fetch the estimated withdrawal fee.
 
 ```bash 
 dfx canister call example_canister --network ic make_call_to_ckbtc_minter  
