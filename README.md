@@ -106,3 +106,5 @@ Stop all timers
 dfx canister call example_canister --network ic stop_all_timers
 ```
 
+#### Note
+Timers are not persisted through upgrades. It is recommended to stop any timers before an upgrade and then restart them once the upgrade has been completed.
