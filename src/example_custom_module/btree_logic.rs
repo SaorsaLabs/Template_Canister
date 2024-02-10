@@ -51,12 +51,8 @@ pub fn remove_from_btree(key: String){
     });
 }
 
-pub fn get_all_keys() -> Vec<String> {
+pub fn get_value_from_btree(key: String) -> Option<ExampleData> {
     MAP.with(|s|{
-        let mut keys = Vec::new();
-        for (k, _v) in s.borrow().iter() {
-            keys.push(k.clone());
-        }
-        return keys;
+        s.borrow().get(&key)
     })
 }

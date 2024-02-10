@@ -1,6 +1,6 @@
 use ic_cdk_macros::{query, update};
 use super::{
-    types::{LogEntry, MemoryData}, 
+    types::{LogEntry, MemoryData}, // MemoryData will flag as unused.. however it is!
     runtime::RUNTIME_STATE, constants::CANISTER_VERSION
 };
 

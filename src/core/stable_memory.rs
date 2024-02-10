@@ -1,6 +1,7 @@
 use std::cell::RefCell;
 use ic_stable_structures::memory_manager::{MemoryId, MemoryManager, VirtualMemory};
 use ic_stable_structures::{DefaultMemoryImpl, BTreeMap};
+use crate::example_custom_module::btree_logic::ExampleData;
 
 thread_local! {
     // Stable memory manager
@@ -9,11 +10,11 @@ thread_local! {
         RefCell::new(MemoryManager::init(DefaultMemoryImpl::default()));
 
     // 1 - EXAMPLE Stable BtreeMap (Main Store)
-    // pub static MAP: RefCell<BTreeMap<String, PriceData, Memory>> = RefCell::new(
-    //     BTreeMap::init(
-    //         MEMORY_MANAGER.with(|m| m.borrow().get(MemoryId::new(1))), // upgrades uses slot 0, so must start from 1
-    //     )
-    // );
+    pub static MAP: RefCell<BTreeMap<String, ExampleData, Memory>> = RefCell::new(
+        BTreeMap::init(
+            MEMORY_MANAGER.with(|m| m.borrow().get(MemoryId::new(1))), // upgrades uses slot 0, so must start from 1
+        )
+    );
 }
 type Memory = VirtualMemory<DefaultMemoryImpl>;
 

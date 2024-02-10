@@ -1,3 +1,4 @@
+use candid::Nat;
 use ic_cdk::api::management_canister::http_request::{
     http_request, CanisterHttpRequestArgument, HttpHeader, HttpMethod, HttpResponse, TransformArgs,
     TransformContext,
@@ -131,7 +132,7 @@ pub fn transform_impl(raw: TransformArgs) -> HttpResponse {
         ..Default::default()
     };
 
-    if res.status == 200 {
+    if res.status == Nat::from(200_u32) {
         res.body = raw.response.body;
     } else {
         RUNTIME_STATE.with(|s|{

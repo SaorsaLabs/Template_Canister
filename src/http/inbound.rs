@@ -75,7 +75,7 @@ fn test_return_ok() -> HttpResponseInbound {
         status_code: 200,
         headers,
         body: ByteBuf::from(content_body),
-        upgrade: None,
+        upgrade: Some(true),
         streaming_strategy: None,
     };
     return ret;
@@ -85,8 +85,8 @@ fn test_return_fail() -> HttpResponseInbound {
     let ret = HttpResponseInbound {
             status_code: 500,
             headers: security_headers(),
-            body: ByteBuf::from(format!("DOH!")),
-            upgrade: None,
+            body: ByteBuf::from(format!("Successfully failed ;-)")),
+            upgrade: Some(true),
             streaming_strategy: None,
         };
     return ret;

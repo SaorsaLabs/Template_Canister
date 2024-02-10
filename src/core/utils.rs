@@ -57,26 +57,4 @@ where
 
 }
 
-pub async fn oc_dev_message(message: String){
-    // OC-Bot Canister
-    let can = Principal::from_text(OC_DEV_BOT);
-    match can {
-        Ok(cnster) => {
-            // Dev OC A/C
-            let user = String::from(OC_DEV_PRINCIPAL);
-            let _res: Result<((),), (ic_cdk::api::call::RejectionCode, String)> 
-            = ic_cdk::call(cnster, "send", (user, message, )).await;
-        },
-        Err(_error) => {}
-    }
-}
-
-pub async fn critical_err(message: String){
-    let canister = RUNTIME_STATE.with(|s|{
-        s.borrow().data.get_self_id()
-    });
-    let error = format!("{} - {}",message, canister);
-    log(error.clone());
-    oc_dev_message(error).await;
-}
 

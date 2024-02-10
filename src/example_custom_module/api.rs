@@ -1,6 +1,6 @@
 use ic_cdk_macros::{query, update};
 use crate::core::{runtime::RUNTIME_STATE, utils::log};
-use super::{btree_logic::{add_to_btree, remove_from_btree}, logic::call_ckbtc_minter};
+use super::{btree_logic::{add_to_btree, get_value_from_btree, remove_from_btree, ExampleData}, logic::call_ckbtc_minter};
 
 // writing text/ data to the canister logs
 #[update]
@@ -30,6 +30,11 @@ fn add_btree_method(name: String, nickname: String, age: u64){
 #[update]
 fn remove_btree_method(name: String){
     remove_from_btree(name);
+}
+
+#[query]
+fn get_value_btree_method(name: String) -> Option<ExampleData> {
+    get_value_from_btree(name)
 }
 
 // Make a call to another canister

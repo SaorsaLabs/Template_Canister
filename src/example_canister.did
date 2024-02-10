@@ -1,5 +1,9 @@
 type MemoryStats = record {memory: nat64; heap_memory: nat64};
 type LogEntry = record {timestamp: text; text: text};
+type ExampleData = record {
+    example_data1: text;
+    example_data2: nat64
+};
 
 service : (text) -> {
 
@@ -16,20 +20,21 @@ service : (text) -> {
     // Canister Management (not gated)
     "get_cycles_balance": () -> (nat64) query;
     "deposit_cycles": () -> ();
-    "canister_version": () -> (text) query;
+    "get_canister_version": () -> (text) query;
 
     // Timers (admin gated)
     "stop_all_timers": () -> (text);
-    "start_quotes_timer": (nat64) -> (text); // input is in seconds
+    "start_test_timer": (nat64) -> (text); // input is in seconds
 
     // HTTP outcall methods
     "test_http_outcall": () -> (float64);
 
     // Custom module methods
-    "write_to_canister_log": () -> ();
+    "write_to_canister_log": (text) -> ();
     "get_canister_own_id": () -> (text) query;
     "add_btree_method": (text, text, nat64) -> ();
     "remove_btree_method": (text) -> ();
+    "get_value_btree_method": (text) -> (opt ExampleData) query;
     "make_call_to_ckbtc_minter": () -> (text);
     "clear_all_logs": () -> ();
 }

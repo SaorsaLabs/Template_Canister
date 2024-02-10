@@ -31,7 +31,7 @@ fn stop_all_timers() -> String {
 }
 
 #[update]
-fn start_quotes_timer(secs: u64) -> String {
+fn start_test_timer(secs: u64) -> String {
     // check admin
     RUNTIME_STATE.with(|state| {state.borrow().data.check_admin(ic_cdk::caller().to_text());});
 
@@ -43,14 +43,12 @@ fn start_quotes_timer(secs: u64) -> String {
      if is_running == true {
         ret = String::from("Main quotes timer is already running");
     } else {
-        
         start_processing_timer(secs);
-
         RUNTIME_STATE.with(|s|{
             s.borrow_mut().stats.update_timer(true)
         });
-        ret = String::from("Main quotes has been started");
-        log("[][] ---- Starting Main quotes Timer ---- [][]");
+        ret = String::from("Test Timer has been started");
+        log("[][] ---- Starting Test Timer ---- [][]");
     }
     return ret;
 }
