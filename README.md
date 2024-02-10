@@ -91,3 +91,18 @@ https://xxxxx-xxxxx-xxxxxx-xxxxx-xxxx.icp0.io/data
 https://xxxxx-xxxxx-xxxxxx-xxxxx-xxxx.icp0.io/ok
 https://xxxxx-xxxxx-xxxxxx-xxxxx-xxxx.icp0.io/err
 ```
+
+#### Start and Stop Timers
+
+Timers are an incredibly useful feature of the Internet Computer. Timers can be used to call functions within your smart contract at a set interval. This can be really useful for making periodic calls to other smart contracts or even ‘self-calling’ a method on the canister using the timer. 
+Start a timer (this text example logs a message to the canister logs every 30 seconds)
+
+```bash
+dfx canister call example_canister --network ic start_test_timer '(30: nat64)'
+```
+
+Stop all timers
+```bash
+dfx canister call example_canister --network ic stop_all_timers
+```
+
