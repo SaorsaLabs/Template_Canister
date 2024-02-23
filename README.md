@@ -47,7 +47,7 @@ The core methods in the example_canister should be self explanatory. We have add
 #### Write to Stable Storage
 The internet computer allows canisters to store data in volatile or stable memory. For ease, most of the data associated in the core functions is stored in volatile memory. It should be noted that because the canister is replicated multiple times across a subnet, volatile memory is not at risk of being lost if a node goes ‘down’. There is however only a limited amount of volatile memory a canister can use (currently 4gb). 
 
-To store more data, canisters can use stable memory (currently up to 96gb). There are two rust crates that assist in writing data to stable memory (ic-stable-structures and ic-stable-memory). The example_canister uses [ic-stable-structures]( https://docs.rs/ic-stable-structures/latest/ic_stable_structures/) which was created by Dfinity. 
+To store more data, canisters can use stable memory (currently up to 400gb). There are two rust crates that assist in writing data to stable memory (ic-stable-structures and ic-stable-memory). The example_canister uses [ic-stable-structures]( https://docs.rs/ic-stable-structures/latest/ic_stable_structures/) which was created by Dfinity. 
 
 In this canister, the example_custom_module (btree_logic.rs) defines the logic for interacting with a Btreemap stored in stable memory. The BTreeMap is defined in stable_memory.rs in the core module. 
 
