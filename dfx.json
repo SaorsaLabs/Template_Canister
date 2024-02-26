@@ -1,7 +1,7 @@
 {
   "canisters": {
 		"example_canister": {
-			"candid": "src/example_canister/example_canister.did",
+			"candid": "src/example_canister.did",
 			"package": "example_canister",
 			"type": "rust",
 			"optimize": "cycles"
