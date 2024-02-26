@@ -4,6 +4,7 @@ type ExampleData = record {
     example_data1: text;
     example_data2: nat64
 };
+type Metrics = record { total_errors: nat64; total_api_requests: nat64 };
 
 service : (text) -> {
 
@@ -21,6 +22,7 @@ service : (text) -> {
     "get_cycles_balance": () -> (nat64) query;
     "deposit_cycles": () -> ();
     "get_canister_version": () -> (text) query;
+    "get_metrics": () -> (Metrics) query;
 
     // Timers (admin gated)
     "stop_all_timers": () -> (text);
@@ -32,9 +34,9 @@ service : (text) -> {
     // Custom module methods
     "write_to_canister_log": (text) -> ();
     "get_canister_own_id": () -> (text) query;
-    "add_btree_method": (text, text, nat64) -> ();
-    "remove_btree_method": (text) -> ();
-    "get_value_btree_method": (text) -> (opt ExampleData) query;
+    "add_to_btree_map": (text, text, nat64) -> ();
+    "remove_from_btree_map": (text) -> ();
+    "get_value_btree_map": (text) -> (opt ExampleData) query;
     "make_call_to_ckbtc_minter": () -> (text);
     "clear_all_logs": () -> ();
 }

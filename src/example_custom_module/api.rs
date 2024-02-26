@@ -22,18 +22,22 @@ fn get_canister_own_id() -> String {
 
 // add data to stable memory BTreeMap using function defined in btree_logic.rs
 #[update]
-fn add_btree_method(name: String, nickname: String, age: u64){
+fn add_to_btree_map(name: String, nickname: String, age: u64){
     add_to_btree(name, nickname, age);
+    // example for using metrics - add 1 to the total api metric
+    RUNTIME_STATE.with(|s|{
+        s.borrow_mut().stats.metrics.increment_total_api() // note uses borrow_mut! 
+    })
 }
 
 // remove value from stable memory BTreeMap using function defined in btree_logic.rs
 #[update]
-fn remove_btree_method(name: String){
+fn remove_from_btree_map(name: String){
     remove_from_btree(name);
 }
 
 #[query]
-fn get_value_btree_method(name: String) -> Option<ExampleData> {
+fn get_value_btree_map(name: String) -> Option<ExampleData> {
     get_value_from_btree(name)
 }
 

@@ -13,7 +13,7 @@ If you have not deployed a smart contact on the Internet Computer before, check 
 first start a local dfx environment 
 
 ```bash
-dfx start –background --clean
+dfx start --background --clean
 ``` 
 
 This will start a clean version of dfx running in the background. In order to deploy the example canister you will need to know the principal of your developer identity. You can get this by calling `dfx identity get-principal` Simply add this to the argument in the deploy script below
@@ -34,7 +34,9 @@ Once deployed on mainnet there are a couple of way to interact and test the cani
 
 To use the blockchain explorer UI – first get your canister ID from the canister_ids.json file and then search for this on the IC Dashboard. This will show you the publicly visible methods defined in the project’s .did file. Calling most of these methods will result in an ‘unauthorized’ error because the canister implements admin/ authorised user ‘gates’. 
 
-If you want to call all methods from the dashboard you can add the ‘anonymous principal’ as an admin and authorised user. Note – this will essentially remove all ‘gates’ allowing anyone to call all the canister methods. 
+If you want to call all methods from the dashboard you can add the ‘anonymous principal’ as an admin and authorised user. NOTE - this does not completely remove the gate and other callers might still be blocked (for example other canister smart contracts who don't use the 'anonymous principal'). To have a method open to everyone, simply remove the gate code completely (see get_cycles_balance method in core/api). 
+
+Example of adding the 'anonymous principal' as admin and authorised:
 
 ```bash
 dfx canister call example_canister --network ic add_admin '("2vxsx-fae")'
@@ -53,17 +55,17 @@ In this canister, the example_custom_module (btree_logic.rs) defines the logic f
 
 Add entry to the Map. Input is a String (Name), String (Nickname), u64 (age). 
 ```bash
-dfx canister call example_canister --network ic add_btree_method '("Jonathan", "J-dawg", 28: nat64)'
+dfx canister call example_canister --network ic add_to_btree_map '("Jonathan", "J-dawg", 28: nat64)'
 ```
 
 Lookup entry in the Map
 ```bash
-dfx canister call example_canister --network ic get_value_btree_method '("Jonathan")'
+dfx canister call example_canister --network ic get_value_btree_map '("Jonathan")'
 ```
 
 Remove entry from the Map
 ```bash
-dfx canister call example_canister --network ic remove_btree_method '("Jonathan")'
+dfx canister call example_canister --network ic remove_from_btree_map '("Jonathan")'
 ```
 
 #### Call another canister 

@@ -46,7 +46,7 @@ pub fn add_to_btree(key: String, value_one: String, value_two: u64){
 
 // remove from btree map
 pub fn remove_from_btree(key: String){
-    let rm = MAP.with(|s|{
+    MAP.with(|s|{
         s.borrow_mut().remove(&key)
     });
 }

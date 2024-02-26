@@ -1,7 +1,6 @@
 use ic_cdk_macros::{query, update};
 use super::{
-    types::{LogEntry, MemoryData}, // MemoryData will flag as unused.. however it is!
-    runtime::RUNTIME_STATE, constants::CANISTER_VERSION
+    constants::CANISTER_VERSION, runtime::RUNTIME_STATE, types::{LogEntry, MemoryData}, working_stats::Metrics
 };
 
 // [][] -- ADMIN METHODS -- [][]
@@ -109,4 +108,11 @@ fn deposit_cycles() -> () {
 #[query]
 fn get_canister_version() -> String {
     return CANISTER_VERSION.to_string();
+}
+
+#[query]
+fn get_metrics() -> Metrics {
+    RUNTIME_STATE.with(|s|{
+        s.borrow().stats.get_metrics()
+    })
 }
